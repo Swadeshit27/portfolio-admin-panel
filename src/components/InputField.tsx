@@ -17,7 +17,7 @@ export function InputField({ id, label, placeholder, type = "text", register, re
             <Input
                 id={id}
                 type={type}
-                accept={(type === "file") ? "image/png, image/jpg, image/jpeg, image/gif" : undefined}
+                // accept={(type === "file") ? "image/png, image/jpg, image/jpeg, image/gif" : undefined}
                 placeholder={placeholder}
                 {...register(id, { required: {required} })}
             />
