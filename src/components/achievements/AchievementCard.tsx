@@ -3,6 +3,7 @@ import { Card, CardFooter } from "@/components/ui/card"
 import { AchievementProps } from "@/types"
 import { Link } from "react-router-dom"
 import { EditAndDelete } from "../EditAndDelete"
+import fileService from "@/appwrite/file";
 
 type AchievementCardProps = AchievementProps & { onDelete: (id: string) => void };
 
@@ -19,19 +20,19 @@ export default function AchievementCard({
                 </p>
             </div>
             {attachment &&
-                <Link to={attachment} className="flex items-center gap-4">
+                <Link target="__blank" to={String(fileService.getFilePreview(attachment))} className="flex items-center gap-4">
                     <div className="bg-muted rounded-md p-3 flex items-center justify-center">
                         <FileIcon className="w-6 h-6 text-muted-foreground" />
                     </div>
-                    <div className="text-sm text-muted-foreground">attachment</div>
+                    <div className="text-sm text-muted-foreground">Attachment</div>
                 </Link>
             }
             {fileLink &&
-                <Link to={fileLink} className="flex items-center gap-4">
+                <Link target="__blank" to={fileLink} className="flex items-center gap-4">
                     <div className="bg-muted rounded-md p-3 flex items-center justify-center">
                         <FileIcon className="w-6 h-6 text-muted-foreground" />
                     </div>
-                    <div className="text-sm text-muted-foreground">file link</div>
+                    <div className="text-sm text-muted-foreground">Link</div>
                 </Link>
             }
             <CardFooter>

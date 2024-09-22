@@ -8,8 +8,6 @@ import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { Link } from "react-router-dom"
 
-
-
 const AllExperience = () => {
     const [allExperiences, setAllExperiences] = useState<ExperienceProps[]>([])
     const [loading, setLoading] = useState(false)
@@ -18,7 +16,7 @@ const AllExperience = () => {
         setLoading(true)
         experienceService.getAllExperience()
             .then((res: any) => {
-                setAllExperiences(res.documents)
+                setAllExperiences(res.documents.reverse())
             })
             .catch(error => {
                 console.log("Failed to get all experience details", error);

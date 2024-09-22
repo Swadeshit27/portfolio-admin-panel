@@ -98,7 +98,7 @@ export default function ExperienceForm({ experience }: { experience?: Experience
                         <SelectField
                             id="category"
                             label="choose the category"
-                            options={["Internship", "Job", "OpenSource", "Hackathon", "PartTime", "other"]}
+                            options={["Internship", "Job", "Hackathon",  "other"]}
                             control={control}
                         />
                     </div>

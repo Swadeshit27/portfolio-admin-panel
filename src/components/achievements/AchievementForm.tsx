@@ -26,9 +26,9 @@ export default function AchievementsForm({ achievements }: { achievements?: Achi
     });
 
     const submitForm = async (data: AchievementProps) => {
-        setLoading(true); 
+        setLoading(true);  
         try {
-            const file = (data.attachment[0]) ? await fileService.uploadFile(data?.attachment[0]) : undefined;
+            const file = (data.attachment[0]) ? await fileService.uploadFile(data?.attachment[0]) : undefined; 
             if (achievements) {
                 if (file) {
                     await fileService.deleteFile(achievements.attachment);
@@ -36,15 +36,20 @@ export default function AchievementsForm({ achievements }: { achievements?: Achi
                 const updatedAchievements = await achievementService.updateAchievement(achievements.$id, {
                     ...data,
                     attachment: file ? file.$id : achievements.attachment,
-                }); 
+                });  
                 if (updatedAchievements) {
                     toast.success("Achievements updated successfully");
                 }
             } else {
                 if (file) {
                     data.attachment = file.$id
-                    const response = await achievementService.addAchievement(data);
+                    const response = await achievementService.addAchievement(data); 
                     if (response) {
+                        toast.success("Achievements added successfully")
+                    }
+                } else {
+                    const res = await achievementService.addAchievement(data); 
+                    if (res) {
                         toast.success("Achievements added successfully")
                     }
                 }

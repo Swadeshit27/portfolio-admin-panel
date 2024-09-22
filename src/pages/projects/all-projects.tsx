@@ -17,7 +17,7 @@ const AllProjects: React.FC = () => {
         projectService.getAllProject()
             .then((response: any) => {
                 if (response) {
-                    setProjects(response.documents);
+                    setProjects(response.documents.reverse());
                 }
             })
             .catch((err) => {

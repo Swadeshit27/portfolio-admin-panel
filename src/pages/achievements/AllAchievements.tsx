@@ -17,8 +17,8 @@ function AllAchievements() {
     useEffect(() => {
         setLoading(true)
         achievementService.getAllAchievements()
-            .then((res: any) => {
-                setAchievements(res.documents)
+            .then((res: any) => { 
+                setAchievements(res.documents.reverse())
             })
             .catch(error => {
                 console.log("Failed to get achievements", error);

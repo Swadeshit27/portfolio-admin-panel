@@ -15,8 +15,8 @@ const AllSkills = () => {
   useEffect(() => {
     setLoading(true)
     skillsService.getAllSkills()
-      .then((res: any) => {
-        setSkills(res.documents)
+      .then((res: any) => { 
+        setSkills(res.documents.reverse())
       })
       .catch(error => console.log("Failed to get skills", error))
       .finally(() => setLoading(false))

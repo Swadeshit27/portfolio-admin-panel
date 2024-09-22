@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { infoProps } from "@/types";
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card"
-import fileService from '@/appwrite/file'; 
+import fileService from '@/appwrite/file';
 import {
     FacebookIcon,
     FileIcon,
@@ -26,7 +26,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
+import { SiCodechef, SiCodeforces, SiCodingninjas, SiGeeksforgeeks, SiHackerrank, SiLeetcode } from "react-icons/si";
 
 export const InfoCard: React.FC<infoProps & { onDelete: (id: string) => void }> = ({
     $id,
@@ -47,6 +47,12 @@ export const InfoCard: React.FC<infoProps & { onDelete: (id: string) => void }> 
     shortAddress,
     fullAddress,
     onDelete,
+    leetcode,
+    codeforces,
+    hackerrank,
+    codechef,
+    geekforgeeks,
+    codestudio
 }) => {
     return (
         <div key={$id}>
@@ -101,6 +107,65 @@ export const InfoCard: React.FC<infoProps & { onDelete: (id: string) => void }> 
                                 <p className="text-muted-foreground">{shortAddress}</p>
                                 <p className="text-muted-foreground">{fullAddress}</p>
                             </div>
+                            <div>
+                                <h4 className="text-md font-semibold">Coding Platforms</h4>
+                                <div className='flex items-center gap-4 my-4 text-xl text-gray-700'>
+                                    {leetcode &&
+                                        <Link
+                                            target='__blank'
+                                            to={leetcode}
+                                            className="text-primary hover:text-blue-600"
+                                        >
+                                            <SiLeetcode />
+                                        </Link>
+                                    }
+                                    {codechef &&
+                                        <Link
+                                            target='__blank'
+                                            to={codechef}
+                                            className="text-primary hover:text-blue-600"
+                                        >
+                                            <SiCodechef />
+                                        </Link>
+                                    }
+                                    {codeforces &&
+                                        <Link
+                                            target='__blank'
+                                            to={codeforces}
+                                            className="text-primary hover:text-blue-600"
+                                        >
+                                            <SiCodeforces />
+                                        </Link>
+                                    }
+                                    {geekforgeeks &&
+                                        <Link
+                                            target='__blank'
+                                            to={geekforgeeks}
+                                            className="text-primary hover:text-blue-600"
+                                        >
+                                            <SiGeeksforgeeks />
+                                        </Link>
+                                    }
+                                    {codestudio &&
+                                        <Link
+                                            target='__blank'
+                                            to={codestudio}
+                                            className="text-primary hover:text-blue-600"
+                                        >
+                                            <SiCodingninjas />
+                                        </Link>
+                                    }
+                                    {hackerrank &&
+                                        <Link
+                                            target='__blank'
+                                            to={hackerrank}
+                                            className="text-primary hover:text-blue-600"
+                                        >
+                                            <SiHackerrank />
+                                        </Link>
+                                    } 
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <Separator />
@@ -108,7 +173,7 @@ export const InfoCard: React.FC<infoProps & { onDelete: (id: string) => void }> 
                         <h3 className="text-lg font-semibold">Connect with Me</h3>
                         <div className="flex flex-wrap items-center gap-x-8">
                             <Link to={github} className="text-primary hover:text-blue-600">
-                                <Github  className="w-5 h-5 mr-1" />
+                                <Github className="w-5 h-5 mr-1" />
                             </Link>
                             <Link to={linkedin} className="text-primary hover:text-blue-600">
                                 <LinkedinIcon className="w-5 h-5 mr-1" />

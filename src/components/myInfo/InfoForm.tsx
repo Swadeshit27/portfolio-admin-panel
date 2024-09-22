@@ -1,5 +1,11 @@
 import { InputField } from "../InputField";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "../ui/card";
 import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
 import { infoProps } from "@/types";
@@ -16,10 +22,9 @@ interface ProjectFormProps {
     info?: infoProps;
 }
 
-
 export const InfoForm = ({ info }: ProjectFormProps) => {
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const { handleSubmit, register } = useForm<infoProps>({
         defaultValues: {
             name: info?.name || "",
@@ -38,14 +43,24 @@ export const InfoForm = ({ info }: ProjectFormProps) => {
             email: info?.email || "",
             shortAddress: info?.shortAddress || "",
             fullAddress: info?.fullAddress || "",
-        }
+            leetcode: info?.leetcode || "",
+            codeforces: info?.codeforces || "",
+            hackerrank: info?.hackerrank || "",
+            codechef: info?.codechef || "",
+            geekforgeeks: info?.geekforgeeks || "",
+            codestudio: info?.codestudio || "",
+        },
     });
 
-    const submitForm = async (data: infoProps) => { 
+    const submitForm = async (data: infoProps) => {
         setLoading(true);
         try {
-            const homeImg = (data.homeImg[0]) ? await fileService.uploadFile(data.homeImg[0]) : undefined;
-            const aboutImg = (data.aboutImg[0]) ? await fileService.uploadFile(data.aboutImg[0]) : undefined;
+            const homeImg = data.homeImg[0]
+                ? await fileService.uploadFile(data.homeImg[0])
+                : undefined;
+            const aboutImg = data.aboutImg[0]
+                ? await fileService.uploadFile(data.aboutImg[0])
+                : undefined;
 
             if (info) {
                 if (homeImg) {
@@ -66,19 +81,18 @@ export const InfoForm = ({ info }: ProjectFormProps) => {
                 }
             } else {
                 if (homeImg && aboutImg) {
-                    data.homeImg = homeImg.$id
-                    data.aboutImg = aboutImg.$id
-                    const response = await myInfoService.addInfo(data)
+                    data.homeImg = homeImg.$id;
+                    data.aboutImg = aboutImg.$id;
+                    const response = await myInfoService.addInfo(data);
                     if (response) {
-                        toast.success("Info added successfully")
+                        toast.success("Info added successfully");
                     }
                 }
             }
-        } catch (error:any) {
+        } catch (error: any) {
             console.error("Error submitting form:", error);
             toast.error(error.message);
-        }
-        finally {
+        } finally {
             setLoading(false);
             navigate("/");
         }
@@ -89,8 +103,12 @@ export const InfoForm = ({ info }: ProjectFormProps) => {
             {!loading ? (
                 <Card className="max-w-xl mx-auto p-4">
                     <CardHeader>
-                        <CardTitle className="text-2xl font-bold">{info ? "Edit Your Information" : "Add Your Information"}</CardTitle>
-                        <CardDescription>Fill out the form to provide more details</CardDescription>
+                        <CardTitle className="text-2xl font-bold">
+                            {info ? "Edit Your Information" : "Add Your Information"}
+                        </CardTitle>
+                        <CardDescription>
+                            Fill out the form to provide more details
+                        </CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form className="space-y-5" onSubmit={handleSubmit(submitForm)}>
@@ -212,16 +230,57 @@ export const InfoForm = ({ info }: ProjectFormProps) => {
                                 placeholder="Enter your full address"
                                 register={register}
                             />
+                            <p>Coding platforms links</p>
+                            <InputField
+                                id="leetcode"
+                                label="Leetcode Profile Link"
+                                placeholder="Enter your leetcode profile link"
+                                register={register}
+                            />
+                            <InputField
+                                id="codeforces"
+                                label="Codeforces Profile Link"
+                                placeholder="Enter your codeforces profile link"
+                                register={register}
+                            />
+                            <InputField
+                                id="hackerrank"
+                                label="Hackerrank Profile Link"
+                                placeholder="Enter your hackerrank profile link"
+                                register={register}
+                            />
+                            <InputField
+                                id="codechef"
+                                label="Codechef Profile Link"
+                                placeholder="Enter your codechef profile link"
+                                register={register}
+                            />
+                            <InputField
+                                id="geekforgeeks"
+                                label="Geekforgeeks Profile Link"
+                                placeholder="Enter your geekforgeeks profile link"
+                                register={register}
+                            />
+                            <InputField
+                                id="codestudio"
+                                label="Codestudio Profile Link"
+                                placeholder="Enter your codestudio profile link"
+                                register={register}
+                            />
                             <div className=" flex space-x-10 pt-5">
-                                <Button onClick={() => navigate("/")} className=" w-full">Cancel</Button>
-                                <Button type="submit" variant={"indigo"} className="w-full">{info ? "Update info" : "Add info"}</Button>
+                                <Button onClick={() => navigate("/")} className=" w-full">
+                                    Cancel
+                                </Button>
+                                <Button type="submit" variant={"indigo"} className="w-full">
+                                    {info ? "Update info" : "Add info"}
+                                </Button>
                             </div>
                         </form>
                     </CardContent>
                 </Card>
-            ) :
+            ) : (
                 <Loading />
-            }
+            )}
         </>
     );
 };

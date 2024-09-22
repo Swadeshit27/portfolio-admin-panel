@@ -1,5 +1,5 @@
 import conf from "./conf";
-import { Client, ID, Databases, Storage, } from "appwrite";
+import { Client, ID, Databases, Storage, Query, } from "appwrite";
 import { SkillProps } from "@/types";
 
 export class SkillsService {
@@ -58,10 +58,11 @@ export class SkillsService {
     }
 
     async getAllSkills() {
-        try {
+        try {         
             return this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteSkillsCollectionId,
+                [Query.limit(100)]
             )
         } catch (error) {
             console.log("Skills Service : : getAllSkills : : error : ", error);

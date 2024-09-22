@@ -21,9 +21,15 @@ export interface infoProps {
     email: string;
     shortAddress: string;
     fullAddress: string;
+    leetcode?: string;
+    codeforces?: string;
+    hackerrank?: string;
+    codechef?: string;
+    geekforgeeks?: string;
+    codestudio?: string;
 }
 
-export interface educationProps{
+export interface educationProps {
     $id: string;
     course: string;
     description: string;
@@ -46,7 +52,7 @@ export interface projectProps {
     demoLink: string;
 }
 
-export interface SkillProps{
+export interface SkillProps {
     $id: string;
     icon: string;
     name: string;
