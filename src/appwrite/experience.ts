@@ -1,5 +1,5 @@
 import conf from "./conf";
-import { Client, ID, Databases, Storage, } from "appwrite";
+import { Client, ID, Databases, Storage, Query, } from "appwrite";
 import { ExperienceProps } from "@/types";
 
 export class ExperienceService {
@@ -62,6 +62,7 @@ export class ExperienceService {
             return this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteExperienceId,
+                [Query.limit(100)]
             )
         } catch (error) {
             console.log("Education Service : : getAllEducation : : error : ", error);

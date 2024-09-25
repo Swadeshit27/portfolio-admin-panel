@@ -1,5 +1,5 @@
 import conf from "./conf";
-import { Client, ID, Databases, Storage, } from "appwrite";
+import { Client, ID, Databases, Storage, Query, } from "appwrite";
 import { projectProps } from "@/types";
 
 export class ProjectService {
@@ -62,6 +62,7 @@ export class ProjectService {
             return this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteProjectsCollectionId,
+                [Query.limit(100)]
             )
         } catch (error) {
             console.log("Project Service : : getAllProject : : error : ", error);
