@@ -47,6 +47,11 @@ const NavItems: Item[] = [
         path: "/experience",
         icon: <Cog size={22} />,
     },
+    {
+        name: "Reviews",
+        path: "/reviews",
+        icon: <Cog size={22} />,
+    },
 ];
 
 export const Sidebar = ({ className }: Props) => {

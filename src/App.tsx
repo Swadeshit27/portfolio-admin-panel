@@ -29,6 +29,8 @@ import EditSkill from "./pages/skills/edit-skill";
 import Experience from "./pages/experience/Experience";
 import { useEffect } from "react";
 import authService from "./appwrite/auth"; 
+import Reviews from "./pages/reviews/reviews";
+import AllReviews from "./pages/reviews/all-reviews";
 
 function App() {
 
@@ -38,14 +40,14 @@ function App() {
       if (user) {
         sessionStorage.setItem('isLoggedIn', 'true');
       }
-    } catch (error: any) { 
+    } catch (error) { 
       sessionStorage.setItem('isLoggedIn', 'false');
     }
   }
 
   useEffect(() => {
     getCurrentUser();
-  }, [location.pathname, sessionStorage.getItem('isLoggedIn')])
+  }, [])
 
   return (
     <>
@@ -229,6 +231,39 @@ function App() {
               element={
                 <PrivatePage>
                   <AllExperience />
+                </PrivatePage>
+              }
+            />
+            <Route
+              path="add"
+              element={
+                <PrivatePage>
+                  <AddExperience />
+                </PrivatePage>
+              }
+            />
+            <Route
+              path="edit/:id"
+              element={
+                <PrivatePage>
+                  <EditExperience />
+                </PrivatePage>
+              }
+            />
+          </Route>
+          <Route
+            path="reviews"
+            element={
+              <PrivatePage>
+                <Reviews />
+              </PrivatePage>
+            }
+          >
+            <Route
+              path=""
+              element={
+                <PrivatePage>
+                  <AllReviews />
                 </PrivatePage>
               }
             />

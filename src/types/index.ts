@@ -82,3 +82,17 @@ export interface ExperienceProps {
     techTools: string;
     position: string;
 }
+
+export interface IReviews {
+    name: string;
+    position: string;
+    company: string;
+    linkedin: string;
+    review: string;
+    photo: string;
+}
+
+export interface ReviewProps extends IReviews {
+    $id: string;
+    isVerified: boolean;
+}
