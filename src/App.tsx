@@ -28,7 +28,7 @@ import AddSkill from "./pages/skills/add-skill";
 import EditSkill from "./pages/skills/edit-skill";
 import Experience from "./pages/experience/Experience";
 import { useEffect } from "react";
-import authService from "./appwrite/auth"; 
+import authService from "./appwrite/auth";
 import Reviews from "./pages/reviews/reviews";
 import AllReviews from "./pages/reviews/all-reviews";
 
@@ -38,10 +38,10 @@ function App() {
     try {
       const user = await authService.getCurrentUser();
       if (user) {
-        sessionStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('isLoggedIn', 'true');
       }
-    } catch (error) { 
-      sessionStorage.setItem('isLoggedIn', 'false');
+    } catch (error) {
+      localStorage.setItem('isLoggedIn', 'false');
     }
   }
 

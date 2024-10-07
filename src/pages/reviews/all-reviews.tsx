@@ -50,7 +50,7 @@ export default function AllReviews() {
         setLoading(true)
         reviewService.getAllReviews()
             .then((res: any) => {
-                console.log("Reviews", res.documents)
+                // console.log("Reviews", res.documents)
                 setReviews(res.documents.reverse())
             })
             .catch(error => {
