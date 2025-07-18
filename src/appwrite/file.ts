@@ -43,7 +43,7 @@ export class FileService {
     }
 
     getFilePreview(fileId: string) {
-        return this.bucket.getFilePreview(
+        return this.bucket.getFileView(
             conf.appwriteBucketId,
             fileId
         )
